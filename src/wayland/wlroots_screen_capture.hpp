@@ -23,9 +23,13 @@ private:
     WlrootScreenCapture();
     ~WlrootScreenCapture();
 
-    wl_display* _display{nullptr};
-    void* _lastData{nullptr};
-    wl_buffer* _lastBuffer{nullptr};
+    bool hasProtocolSupport();
+    void syncWayland();
+    void loadOutputDetails();
+
+    wl_display* _display = nullptr;
+    void* _lastData = nullptr;
+    wl_buffer* _lastBuffer = nullptr;
 };
 
 } // namespace wayland

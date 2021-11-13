@@ -1,0 +1,86 @@
+# -------------------------------------
+# for c/c++
+# -------------------------------------
+# prerequisites
+*.d
+
+# object files
+*.o
+*.ko
+*.lo
+*.slo
+*.obj
+*.elf
+
+# linker output
+*.ilk
+*.map
+*.exp
+
+# precompiled headers
+*.gch
+*.pch
+
+# compiled dynamic libraries
+*.so
+*.dll
+*.dylib
+
+# compiled static libraries
+*.a
+*.la
+*.lai
+*.lib
+
+# executables
+*.exe
+*.out
+*.app
+
+# -------------------------------------
+# for development
+# NOTE: this also affects subdirectories
+# -------------------------------------
+build/
+build_*/
+*_build/
+*_build_*/
+
+# -------------------------------------
+# for cmake
+# -------------------------------------
+Testing
+Makefile
+CMakeFiles
+CMakeScripts
+CMakeCache.txt
+CTestTestfile.cmake
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+
+# -------------------------------------
+# for clion
+# -------------------------------------
+# jetbrains config folder
+.idea/
+
+# default cmake build folder
+cmake-build-*/
+
+# file-based project format
+*.iws
+
+# jira plugin
+atlassian-ide-plugin.xml
+
+# -------------------------------------
+# for qtcreator
+# -------------------------------------
+*.user
+*.files
+*.config
+*.creator
+*.includes
+*.autosave
+*.creator.user*

@@ -11,9 +11,13 @@ if(NOT UNIX)
     message(FATAL_ERROR "Only UNIX systems are supported!")
 endif()
 
-set(CMAKE_AUTOUIC ON)
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
+# unset module path to not get polluted from including projects
+unset(CMAKE_MODULE_PATH)
+
+# append custom cmake paths to module search
+list(APPEND CMAKE_MODULE_PATH
+    "${CMAKE_CURRENT_LIST_DIR}/cmake"
+)
 
 find_package(QT NAMES Qt5 COMPONENTS Core REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Gui REQUIRED)
@@ -31,7 +35,19 @@ set_target_properties(${PROJECT_NAME}
         CXX_EXTENSIONS OFF
 )
 
-target_link_libraries(${PROJECT_NAME}
+target_link_libraries(${PROJECT_NAME} PRIVATE
     Qt${QT_VERSION_MAJOR}::Core
     Qt${QT_VERSION_MAJOR}::Gui
+)
+
+include(protocol_generator)
+generate_wayland_source_files(${CMAKE_CURRENT_SOURCE_DIR}/cmake/protocols/wlr-screencopy-unstable-v1.xml)
+generate_wayland_source_files(${CMAKE_CURRENT_SOURCE_DIR}/cmake/protocols/xdg-output-unstable-v1.xml)
+
+link_wayland_protocols(
+    TARGET
+        ${PROJECT_NAME}
+    PROTOCOLS
+        wlr-screencopy-unstable-v1
+        xdg-output-unstable-v1
 )

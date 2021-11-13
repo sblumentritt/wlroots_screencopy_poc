@@ -35,9 +35,22 @@ set_target_properties(${PROJECT_NAME}
         CXX_EXTENSIONS OFF
 )
 
+target_compile_options(${PROJECT_NAME}
+    PRIVATE
+        "-fsanitize=address,undefined,leak"
+        "-fno-omit-frame-pointer"
+)
+
+target_link_options(${PROJECT_NAME}
+    PRIVATE
+        "-fsanitize=address,undefined,leak"
+        "-fno-omit-frame-pointer"
+)
+
 target_link_libraries(${PROJECT_NAME} PRIVATE
     Qt${QT_VERSION_MAJOR}::Core
     Qt${QT_VERSION_MAJOR}::Gui
+    rt
 )
 
 include(protocol_generator)

@@ -90,12 +90,13 @@ function(link_wayland_protocols)
 
         target_include_directories(${wayland_protocols_target} PUBLIC
             ${CMAKE_CURRENT_BINARY_DIR}
-            ${WAYLAND_CLIENT_INCLUDE_DIRS}
+            ${wayland_client_INCLUDE_DIRS}
         )
 
         target_link_libraries(${wayland_protocols_target} PUBLIC
-            ${WAYLAND_CLIENT_LIBRARIES}
+            ${wayland_client_LIBRARIES}
         )
+
     endif()
 
     target_link_libraries(${tpre_TARGET} PRIVATE
